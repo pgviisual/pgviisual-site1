@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Video Editor Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#0B0B0B;
+    --surface:#151515;
+    --text:#FFFFFF;
+    --secondary:#A1A1AA;
+    --accent:#7C3AED;
+    --accent-hover:#8B5CF6;
+    --border:#27272A;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+    line-height:1.7;
+
+    background:
+        radial-gradient(circle at 10% 10%, rgba(124,58,237,.18), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(124,58,237,.12), transparent 35%),
+        radial-gradient(circle at 50% 90%, rgba(124,58,237,.10), transparent 40%),
+        #0B0B0B;
+}
+
+.container{
+    width:min(1200px,90%);
+    margin:auto;
+}
+
+section{
+    padding:100px 0;
+}
+
+h1{
+    font-size:clamp(3rem,8vw,5.5rem);
+    line-height:1;
+    margin-bottom:24px;
+    text-shadow:0 0 40px rgba(124,58,237,.25);
+}
+
+h2{
+    font-size:2.2rem;
+    margin-bottom:40px;
+}
+
+p{
+    color:var(--secondary);
+}
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    backdrop-filter:blur(12px);
+    background:rgba(11,11,11,.75);
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.nav-container{
+    width:min(1200px,90%);
+    margin:auto;
+    height:75px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-weight:700;
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+}
+
+.nav-links a{
+    color:var(--secondary);
+    text-decoration:none;
+}
+
+.nav-links a:hover{
+    color:white;
+}
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+}
+
+.hero-content{
+    max-width:850px;
+}
+
+.hero p{
+    max-width:700px;
+    font-size:1.1rem;
+}
+
+.btn-group{
+    margin-top:40px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    text-decoration:none;
+    padding:14px 28px;
+    border-radius:12px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-primary{
+    background:var(--accent);
+    color:white;
+}
+
+.btn-primary:hover{
+    background:var(--accent-hover);
+}
+
+.btn-secondary{
+    border:1px solid var(--border);
+    color:white;
+}
+
+.btn-secondary:hover{
+    border-color:var(--accent);
+}
+
+.projects-grid,
+.tools-grid,
+.services-grid{
+    display:grid;
+    gap:24px;
+}
+
+.projects-grid{
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+}
+
+.tools-grid{
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+}
+
+.services-grid{
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+}
+
+.project-card,
+.tool-card,
+.service-card,
+.about-box{
+    background:rgba(21,21,21,.75);
+    backdrop-filter:blur(12px);
+    border:1px solid var(--border);
+    border-radius:20px;
+}
+
+.project-card,
+.tool-card,
+.service-card{
+    transition:.3s;
+}
+
+.project-card:hover,
+.tool-card:hover,
+.service-card:hover{
+    transform:translateY(-5px);
+    border-color:var(--accent);
+}
+
+.project-preview{
+    aspect-ratio:16/9;
+    background:#1E1E1E;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#666;
+}
+
+.project-content{
+    padding:24px;
+}
+
+.category{
+    color:var(--accent);
+    font-size:.9rem;
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.about-box{
+    padding:40px;
+}
+
+.tool-card{
+    text-align:center;
+    padding:32px;
+}
+
+.tool-icon{
+    width:72px;
+    height:72px;
+    margin:0 auto 18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:18px;
+
+    background:rgba(124,58,237,.15);
+    border:1px solid rgba(124,58,237,.35);
+
+    color:var(--accent);
+    font-size:1.4rem;
+    font-weight:700;
+}
+
+.service-card{
+    padding:30px;
+}
+
+.contact{
+    text-align:center;
+}
+
+.contact p{
+    max-width:700px;
+    margin:auto;
+}
+
+.contact-form{
+    max-width:700px;
+    margin:40px auto 0;
+
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:16px;
+
+    background:rgba(21,21,21,.75);
+
+    border:1px solid var(--border);
+    border-radius:12px;
+
+    color:white;
+    font-family:inherit;
+}
+
+textarea{
+    min-height:180px;
+    resize:none;
+}
+
+input:focus,
+textarea:focus{
+    outline:none;
+    border-color:var(--accent);
+}
+
+button{
+    border:none;
+    padding:16px;
+    border-radius:12px;
+
+    background:var(--accent);
+    color:white;
+
+    cursor:pointer;
+    font-weight:600;
+}
+
+button:hover{
+    background:var(--accent-hover);
+}
+
+.socials{
+    margin-top:40px;
+
+    display:flex;
+    justify-content:center;
+    gap:24px;
+    flex-wrap:wrap;
+}
+
+.socials a{
+    text-decoration:none;
+    color:var(--secondary);
+}
+
+.socials a:hover{
+    color:white;
+}
+
+footer{
+    padding:30px;
+    text-align:center;
+    color:var(--secondary);
+    border-top:1px solid rgba(255,255,255,.05);
+}
+
+@media(max-width:768px){
+
+    .nav-links{
+        display:none;
+    }
+
+    section{
+        padding:80px 0;
+    }
+
+    h2{
+        font-size:1.8rem;
+    }
+}
+.about-box{
+    background: rgba(21,21,21,.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px;
+    max-width: 850px;
+}
+
+.about-box h3{
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--text);
+}
+
+.about-box p{
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--secondary);
+}
+.project-preview{
+    width:100%;
+    aspect-ratio:9/16;
+    overflow:hidden;
+    background:#000;
+}
+
+.project-preview video{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+}
+.project-card{
+    max-width:320px;
+    max-height: 568px;
+}
+.about-box{
+    max-width:800px;
+    margin:0 auto;
+
+    background:rgba(21,21,21,.75);
+    backdrop-filter:blur(12px);
+
+    border:1px solid var(--border);
+    border-radius:20px;
+
+    padding:48px;
+
+    text-align:center;
+}
+
+#about{
+    text-align:center;
+}
+
+.about-box h3{
+    font-size:2rem;
+    margin-bottom:24px;
+    color:var(--text);
+}
+
+.about-box p{
+    color:var(--secondary);
+    font-size:1.05rem;
+    line-height:1.9;
+}
+.service-card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+
+    border-radius:14px;
+    margin-bottom:20px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-container">
+        <div class="logo">Pgviisual</div>
+
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#tools">Tools</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container hero-content">
+
+        <h1>Video Editor & Motion Graphics Artist</h1>
+
+        <p>
+            I create engaging short-form content through dynamic editing,
+            motion graphics, and visual storytelling. My goal is to transform
+            raw footage into compelling videos that capture attention,
+            drive engagement, and leave a lasting impact.
+        </p>
+
+        <div class="btn-group">
+            <a href="#work" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-secondary">Let's Connect</a>
+        </div>
+
+    </div>
+</section>
+
+<section id="work">
+    <div class="container">
+
+        <h2>Selected Work</h2>
+
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <a href="https://www.instagram.com/p/DZaf74eClhM/" target="_blank">
+                    <video autoplay muted playsinline loop>
+                        <source src="asset/Project_1.mp4" type="video/mp4">
+                    </video>
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <a href="https://www.instagram.com/reel/DZMbzQfCp4N/" target="_blank">
+                    <video autoplay muted playsinline loop> 
+                        <source src="asset/project_2.mp4" type="video/mp4">
+                    </video>
+                    </a>
+                </div>  
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                <a href="https://www.instagram.com/reel/DX_pMPbiPWg/" target="_blank">
+                    <video autoplay muted playsinline loop>
+                        <source src="asset/Project_3.mp4" type="video/mp4">
+                    </video>
+                    </a>
+                    </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="about">
+    <div class="container">
+
+        <h2>About Me</h2>
+
+        <div class="about-box">
+            <h3>Hi, I'm Prakhar.</h3> 
+            <p> I'm a video editor passionate about creating content that captures attention and leaves a lasting impression. Through editing, motion graphics, and sound design, I transform ideas into engaging visual stories tailored for today's digital audience. </p> 
+            <br> 
+            <p> I enjoy exploring new editing techniques, refining my storytelling skills, and creating content that combines creativity with purpose. Every project is an opportunity to improve my craft, experiment with new ideas, and deliver work that connects with viewers. </p>
+        </div>
+
+    </div>
+</section>
+
+<section id="services">
+    <div class="container">
+
+        <h2>What I Do</h2>
+
+        <div class="services-grid">
+
+            <div class="service-card">
+                <img src="C:\Users\pg810\OneDrive\Desktop\junk\code\asset\video editing.jpg" alt="video editing">
+                <h3>Video Editing</h3>
+                <p>Crafting engaging edits through pacing, transitions, and attention to detail.</p>
+            </div>
+
+            <div class="service-card">
+                <img src="C:\Users\pg810\OneDrive\Desktop\junk\code\asset\creatvise-NoTX005dHhs-unsplash.jpg" alt="motion graphics">
+                <h3>Motion Graphics</h3>
+                <p>Creating animations that enhance storytelling and strengthen visual impact.</p>
+            </div>
+
+            <div class="service-card">
+                <img src="C:\Users\pg810\OneDrive\Desktop\junk\code\asset\visual storytelling.jpg" alt="visual storytelling">
+                <h3>Visual Storytelling</h3>
+                <p>Transforming ideas and footage into compelling narratives.</p>
+            </div>
+
+            <div class="service-card">
+                <img src="C:\Users\pg810\OneDrive\Desktop\junk\code\asset\socialmedia.jpg" alt="social media">
+                <h3>Social Media Content</h3>
+                <p>Producing content optimized for retention, engagement, and platform performance.</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="contact">
+    <div class="container contact">
+
+        <div class="socials">
+            <a href="https://www.instagram.com/pgviisual/" 
+            target="_blank"
+            rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.threads.com/@pgviisual"
+            target="_blank"
+            rel="noopener noreferrer">threads</a>
+            <a href="https://www.linkedin.com/in/pg-viisual-5362a4414/"
+            target="_blank"
+            rel="noopener noreferrer">Linkedin</a>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 Pgviisual. All Rights Reserved.
+</footer>
+
+</body>
+</html>
+```
